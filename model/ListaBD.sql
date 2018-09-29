@@ -14,16 +14,16 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `listaReyes` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema new_schema1
 -- -----------------------------------------------------
-USE `mydb` ;
+USE `listaReyes` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`USUARIOS`
+-- Table `listaReyes`.`USUARIOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`USUARIOS` (
+CREATE TABLE IF NOT EXISTS `listaReyes`.`USUARIOS` (
   `NOMBRE_USUARIO` VARCHAR(50) NOT NULL,
   `CONTRASENA` VARCHAR(50) NOT NULL,
   `NOMBRE` VARCHAR(50) NOT NULL,
@@ -36,9 +36,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PRODUCTOS`
+-- Table `listaReyes`.`PRODUCTOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCTOS` (
+CREATE TABLE IF NOT EXISTS `listaReyes`.`PRODUCTOS` (
   `ID` INT NOT NULL,
   `NOMBRE_PRODUCTO` VARCHAR(50) NOT NULL,
   `DESCRIPCION` VARCHAR(500) NOT NULL,
@@ -50,9 +50,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`LISTAS`
+-- Table `listaReyes`.`LISTAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`LISTAS` (
+CREATE TABLE IF NOT EXISTS `listaReyes`.`LISTAS` (
   `ID` INT NOT NULL,
   `NOMBRE` VARCHAR(50) NOT NULL,
   `NOMBRE_USUARIO` VARCHAR(50) NOT NULL,
@@ -60,16 +60,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`LISTAS` (
   INDEX `NOMBRE_USUARIO_idx` (`NOMBRE_USUARIO` ASC),
   CONSTRAINT `NOMBRE_USUARIO`
     FOREIGN KEY (`NOMBRE_USUARIO`)
-    REFERENCES `mydb`.`USUARIOS` (`NOMBRE_USUARIO`)
+    REFERENCES `listaReyes`.`USUARIOS` (`NOMBRE_USUARIO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`LISTA_PRODUCTOS`
+-- Table `listaReyes`.`LISTA_PRODUCTOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`LISTA_PRODUCTOS` (
+CREATE TABLE IF NOT EXISTS `listaReyes`.`LISTA_PRODUCTOS` (
   `ID_LISTA` INT NOT NULL,
   `ID_PRODUCTO` INT NOT NULL,
   `COMPRADO` INT NOT NULL,
@@ -77,12 +77,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`LISTA_PRODUCTOS` (
   INDEX `ID_PRODUCTO_idx` (`ID_PRODUCTO` ASC),
   CONSTRAINT `ID_LISTA`
     FOREIGN KEY (`ID_LISTA`)
-    REFERENCES `mydb`.`LISTAS` (`ID`)
+    REFERENCES `listaReyes`.`LISTAS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `ID_PRODUCTO`
     FOREIGN KEY (`ID_PRODUCTO`)
-    REFERENCES `mydb`.`PRODUCTOS` (`ID`)
+    REFERENCES `listaReyes`.`PRODUCTOS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
