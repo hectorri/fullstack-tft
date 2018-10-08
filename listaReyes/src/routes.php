@@ -5,10 +5,15 @@ use Slim\Http\Response;
 
 // Routes
 
-$app->get('/[{name}]', function (Request $request, Response $response, array $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+// index
+$app->get('/', function($request, $response, $args){
+	return $this->view->render($response, "index.twig");
+})->setName('inicio');
 
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
-});
+// ruta para cargar el formulario para crear usuario
+$app->get('/registro', function($request, $response, $args){
+	return $this->view->render($response, 'formulario_registro.twig');
+})->setName('usuario.crear');
+
+// ruta para crear un nuevo usuario
+$app->post("/registro", "ControladorUsuario:crea");

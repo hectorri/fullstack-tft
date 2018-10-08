@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+{# manda los datos del formulario a la ruta 'usuario.crear' con un método post #}
+<form action="{{ path_for('usuario.crear') }}"  method="post" autocomplete="off">
+	<label for="nombre">Nombre
+		<input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
+    </label>
+	<label for="apellidos">Apellidos
+		<input type="text" name="apellidos" id="apellidos" placeholder="Escribe tus apellidos">
+    </label>
+    <label for="email">Correo
+		<input type="email" name="email" id="email" placeholder="Escribe tu correo">
+    </label>
+    <label for="contrasena">Contraseña
+		<input type="password" name="contrasena" id="contrasena" placeholder="Escribe tu contraseña">
+    <button type="submit">Agregar</button>
+{% endblock %}

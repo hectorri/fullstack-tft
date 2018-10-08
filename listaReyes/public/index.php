@@ -26,5 +26,9 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
+// Initialize eloquent
+$capsule = $app->getContainer()->get('db'); // toma el elemento capsule dentro del contenedor de la app
+$capsule->bootEloquent(); // inicializa Eloquent
+
 // Run app
 $app->run();

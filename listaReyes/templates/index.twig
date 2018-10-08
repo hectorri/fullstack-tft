@@ -1,0 +1,9 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+{# la función path_for('') llama la ruta con el nombre que recibe como parametro #} 
+<a href="{{ path_for('listaUsuarios') }}">Lista los usuarios registrados</a>
+<a href="{{ path_for('usuario.crear') }}">Agrega un nuevo usuario</a>
+
+{% endblock %}

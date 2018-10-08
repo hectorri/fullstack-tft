@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Reyes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	{% block stylesheets %}
+	
+	{# Aquí incluimos los archivos CSS o CDN de CSS que usemos #}
+	<link href="url de cdn" type="text/css" rel="stylesheet" />
+	
+	{# la función base_url() le indica a twig que busque desde el directorio raíz de proyecto #}
+	
+	<link href="{{ base_url() }}/directorio/de/css" type="text/css" rel="stylesheet" />
+	
+	{% endblock %}
+	
+	{%block scripts %}
+	
+	{# Aqui incluimos los .js y otros scripts #}
+	<script src="{{ base_url() }}/directorio/de/scripts"></script>
+	
+	{% endblock %}
+</head>
+<body>
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>
