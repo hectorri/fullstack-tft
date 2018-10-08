@@ -87,7 +87,7 @@ class ControladorUsuario {
 		if($this->verifica($validaciones)){
 		
 			// evalua si el correo ya existe en la base de datos
-            $correo_existente = Usuario::where('email', $args['email'])->get()->first();
+            $correo_existente = Usuario::where('email', $param['email'])->get()->first();
         
 			// si el correo ya existe manda un error 403
             if($correo_existente){
@@ -98,11 +98,11 @@ class ControladorUsuario {
 				//crea un nuevo usuario a partir del modelo
                 $usuario = new Usuario;
 
-                // asigna cada elemento del arreglo $args con su columna en la tabla usuarios
-                $usuario->nombre = $args['nombre'];
-				$usuario->apellidos = $args['apellidos'];
-                $usuario->email = $args['email'];
-                $usuario->contrasena = $args['contrasena'];
+                // asigna cada elemento del arreglo $param con su columna en la tabla usuarios
+                $usuario->nombre = $param['nombre'];
+				$usuario->apellidos = $param['apellidos'];
+                $usuario->email = $param['email'];
+                $usuario->contrasena = $param['contrasena'];
 
                 $usuario->save(); //guarda el usuario
 
