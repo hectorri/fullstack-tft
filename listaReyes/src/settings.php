@@ -22,7 +22,7 @@ return [
 			'host' => 'localhost',
 			'database' => 'listareyes',
 			'username' => 'root',
-			'password' => 'asd',
+			'password' => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

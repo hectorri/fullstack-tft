@@ -47,7 +47,8 @@ class ControladorUsuario {
 			// verifica que no esté en blanco la contraseña
             v::notBlank()->validate($args['contrasena'])
         ];
-                                                 
+        
+		return $valid;
     }
 	
 	/**
@@ -83,10 +84,10 @@ class ControladorUsuario {
 		$param = $request->getParsedBody(); 
         
 		$validaciones = $this->validaArgs($param); // hace las validaciones
-		if(verifica($validaciones)){
+		if($this->verifica($validaciones)){
 		
 			// evalua si el correo ya existe en la base de datos
-            $correo_existente = Usuario::where('email', $atr['email'])->get()->first();
+            $correo_existente = Usuario::where('email', $args['email'])->get()->first();
         
 			// si el correo ya existe manda un error 403
             if($correo_existente){
@@ -97,11 +98,11 @@ class ControladorUsuario {
 				//crea un nuevo usuario a partir del modelo
                 $usuario = new Usuario;
 
-                // asigna cada elemento del arreglo $atr con su columna en la tabla usuarios
-                $usuario->nombre = $atr['nombre'];
-				$usuario->apellidos = $atr['apellidos'];
-                $usuario->email = $atr['email'];
-                $usuario->contrasena = $atr['contrasena'];
+                // asigna cada elemento del arreglo $args con su columna en la tabla usuarios
+                $usuario->nombre = $args['nombre'];
+				$usuario->apellidos = $args['apellidos'];
+                $usuario->email = $args['email'];
+                $usuario->contrasena = $args['contrasena'];
 
                 $usuario->save(); //guarda el usuario
 
