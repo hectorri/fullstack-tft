@@ -13,7 +13,7 @@ $app->get('/', function($request, $response, $args){
 // ruta para cargar el formulario para crear usuario
 $app->get('/registro', function($request, $response, $args){
 	return $this->view->render($response, 'formulario_registro.twig');
-})->setName('usuario.crear');
+})->setName('usuario.registro');
 
 // ruta para crear un nuevo usuario
-$app->post("/registro", "ControladorUsuario:crea");
+$app->post('/registro', 'ControladorUsuario:crea');

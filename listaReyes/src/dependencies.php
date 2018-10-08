@@ -40,5 +40,5 @@ $container['db'] = function ($container) {
 
 // controller:users
 $container['ControladorUsuario'] = function($container){
-	return new App\Controladores\ControladorUsuario($container);
+	return new App\Controladores\ControladorUsuario($container['view'], $container['router']);
 };

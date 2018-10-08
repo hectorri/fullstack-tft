@@ -36,7 +36,7 @@ class ControladorUsuario {
     public function validaArgs($args){
         $valid = [		
             // verifica que se reciba una cadena de al menos longitud 2
-            v::stringType()->length(2)->validate($args['asd']),
+            v::stringType()->length(2)->validate($args['nombre']),
             
 			// verifica que se reciba una cadena de al menos longitud 2
             v::stringType()->length(2)->validate($args['apellidos']),
@@ -56,7 +56,7 @@ class ControladorUsuario {
 	* @throws \Exception cuando las validaciones no están en un arreglo
 	*/
 	public static function verifica($validaciones){
-		if(!is_array($validaciones){
+		if(!is_array($validaciones)){
 			throw new \Exception('Las validaciones deben estar en un arreglo');
 		} else {
 			foreach($validaciones as $v){
@@ -90,9 +90,7 @@ class ControladorUsuario {
         
 			// si el correo ya existe manda un error 403
             if($correo_existente){
-                echo->$this->error('YA_ESTÁ_REGISTRADO_EL_CORREO',
-                                   $request->getUri()->getPath(),
-                                   404);
+                echo $this->error('YA_ESTÁ_REGISTRADO_EL_CORREO', $request->getUri()->getPath(), 404);
                 return $this->response->withStatus(403);
             } else {
             
@@ -111,7 +109,7 @@ class ControladorUsuario {
                 $path =  $request->getUri()->getPath() . '/' . $usuario->id;
 
                 return $response->withStatus(201); // el usuario fue creado con éxito
-            }
+			}
 		}
 	}
 }
