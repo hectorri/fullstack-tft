@@ -62,12 +62,29 @@ class ControladorProducto {
 	/*-- Funciones del CRUD --*/
 
 	/**
-    * Función para crear una lista
+    * Función para crear un producto
     * @param type Slim\Http\Request $request - solicitud http
     * @param type Slim\Http\Response $response - respuesta http
     */
     public function nuevo($request, $response, $args) {
-		//TODO
+		
+		print "nuevo";
+		$param = $request->getParsedBody();
+		$validaciones = $this->validaArgs($param); // hace las validaciones
+		if($this->verifica($validaciones)){
+			//crea un nuev Producto a partir del modelo
+			$producto = new Producto;
+
+			$producto->nombre = $param['nombre_producto'];
+			$producto->descripcion = $param['descripcion'];
+			$producto->imagen = $param['imagen'];
+			$producto->enlace_compra = $param['enlace_compra'];						
+			//$producto->email = $_SESSION['email'];
+			$producto->save(); //guarda el producto
+
+			//TODO ¿redirigir a lista de productos?
+			return $response->withRedirect('listarProductos', 301);
+		}
 	}
 
 	/**

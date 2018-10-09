@@ -5,17 +5,17 @@
 {# manda los datos del formulario a la ruta 'usuario.registro' con un método post #}
 <form action="{{ path_for('producto.nuevo', {'idLista': idLista})}}"  method="post" autocomplete="off">
 	<input type="text" name="nombre" id="nombre" value="{{idLista}}">
-  <label for="nombre">Nombre
-		<input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
+  <label for="nombre_producto">Nombre
+		<input type="text" name="nombre_producto" id="nombre_producto" placeholder="Nombre Producto">
     </label>
-	<label for="apellidos">Apellidos
-		<input type="text" name="apellidos" id="apellidos" placeholder="Escribe tus apellidos">
+	<label for="descripcion">Descripción
+		<input type="text" name="descripcion" id="descripcion" placeholder="Descripción">
     </label>
-    <label for="email">Correo
-		<input type="email" name="email" id="email" placeholder="Escribe tu correo">
+    <label for="imagen">Imagen del Producto
+		<input type="text" name="imagen" id="imagen" placeholder="">
     </label>
-    <label for="contrasena">Contraseña
-		<input type="password" name="contrasena" id="contrasena" placeholder="Escribe tu contraseña">
+    <label for="enlace_compra">Url Producto
+		<input type="text" name="enlace_compra" id="enlace_compra" placeholder="Enlace">
     <button type="submit">Aceptar</button>
 </form>
 {% endblock %}
