@@ -6,7 +6,7 @@ use Slim\Http\Response;
 // Routes
 
 // index
-$app->get('/', function($request, $response, $args){
+$app->get('/inicio', function($request, $response, $args){
 	return $this->view->render($response, "index.twig");
 })->setName('inicio');
 

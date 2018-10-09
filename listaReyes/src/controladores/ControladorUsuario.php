@@ -120,10 +120,18 @@ class ControladorUsuario {
 	public function login($request, $response, $args) {
 		$param = $request->getParsedBody();
 		$usuarioEncontrado = Usuario::where('email', $param['email'])->get()->first();
+		
 		if($usuarioEncontrado){
-			return $response->withRedirect('paso', 301); 
+			$contrasenaCorrecta = password_verify($param['contrasena'], $usuarioEncontrado['CONTRASENA']);
+			if($contrasenaCorrecta){
+				session_start();
+				$_SESSION['usuario'] = $usuarioEncontrado['EMAIL'];
+				return $response->withRedirect('inicio', 301);
+			}else{
+				return $response->withRedirect('contrasenaincorrecta', 301);
+			}
 		}else{
-			return $response->withRedirect('incorrecto', 301);
+			return $response->withRedirect('noexistemail', 301);
 		}
 	}
 }
