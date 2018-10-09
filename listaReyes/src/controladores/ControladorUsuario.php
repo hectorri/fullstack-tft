@@ -124,8 +124,10 @@ class ControladorUsuario {
 		if($usuarioEncontrado){
 			$contrasenaCorrecta = password_verify($param['contrasena'], $usuarioEncontrado['CONTRASENA']);
 			if($contrasenaCorrecta){
+				session_destroy();
 				session_start();
-				$_SESSION['usuario'] = $usuarioEncontrado['EMAIL'];
+				$_SESSION['email'] = $usuarioEncontrado['EMAIL'];
+				$_SESSION['nombre'] = $usuarioEncontrado['NOMBRE'];
 				return $response->withRedirect('inicio', 301);
 			}else{
 				return $response->withRedirect('contrasenaincorrecta', 301);
@@ -133,5 +135,10 @@ class ControladorUsuario {
 		}else{
 			return $response->withRedirect('noexistemail', 301);
 		}
+	}
+
+	public function logout($request, $response, $args) {
+		session_destroy();
+		return $response->withRedirect('inicio', 301);
 	}
 }
