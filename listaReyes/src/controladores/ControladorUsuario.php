@@ -101,8 +101,11 @@ class ControladorUsuario {
                 // asigna cada elemento del arreglo $param con su columna en la tabla usuarios
                 $usuario->nombre = $param['nombre'];
 				$usuario->apellidos = $param['apellidos'];
-                $usuario->email = $param['email'];
-                $usuario->contrasena = $param['contrasena'];
+				$usuario->email = $param['email'];
+				$hashOpts = [
+					'cost' => 12,
+				];
+                $usuario->contrasena = password_hash($param['contrasena'], PASSWORD_BCRYPT, $hashOpts);
 
                 $usuario->save(); //guarda el usuario
 
@@ -115,6 +118,12 @@ class ControladorUsuario {
 	}
 
 	public function login($request, $response, $args) {
-			
+		$param = $request->getParsedBody();
+		$usuarioEncontrado = Usuario::where('email', $param['email'])->get()->first();
+		if($usuarioEncontrado){
+			return $response->withRedirect('paso', 301); 
+		}else{
+			return $response->withRedirect('incorrecto', 301);
+		}
 	}
 }
