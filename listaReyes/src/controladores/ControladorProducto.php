@@ -6,7 +6,7 @@ use App\Modelos\ModeloProducto as Producto; // para usar el modelo de producto
 use Slim\Views\Twig; // Las vistas de la aplicación
 use Slim\Router; // Las rutas de la aplicación
 use Respect\Validation\Validator as v; // para usar el validador de Respect
-
+use Slim\Http\UploadedFile;
 
 /**
  * Clase de controlador para producto
@@ -67,17 +67,21 @@ class ControladorProducto {
     * @param type Slim\Http\Response $response - respuesta http
     */
     public function nuevo($request, $response, $args) {
-
+		
 		$param = $request->getParsedBody();
 		$validaciones = $this->validaArgs($param); // hace las validaciones
 		if($this->verifica($validaciones)){
+			$archivo = $request->getUploadedFiles();
+			$imagen = $archivo['imagen'];
+			$nombreArchivo = $this->guardarImagen($imagen);
+
 			//crea un nuev Producto a partir del modelo
 			$producto = new Producto;
 
 			$producto->id_lista = $param['id_lista'];
 			$producto->nombre_producto = $param['nombre_producto'];
 			$producto->descripcion = $param['descripcion'];
-			$producto->imagen = $param['imagen'];
+			$producto->imagen = $nombreArchivo;
 			$producto->enlace_compra = $param['enlace_compra'];						
 
 			$producto->save(); //guarda el producto
@@ -85,6 +89,14 @@ class ControladorProducto {
 			$url = $this->router->pathFor('producto.lista', ['idLista' => $param['id_lista'], 'nombreLista' => $param['nombreLista']]);
 			return $response->withStatus(301)->withHeader('Location', $url);
 		}
+	}
+
+	public static function guardarImagen(UploadedFile $imagen){
+		$extension = pathinfo($imagen->getClientFilename(), PATHINFO_EXTENSION);
+		$basename = bin2hex(random_bytes(8));
+		$nombreArchivo = sprintf('%s.%0.8s', $basename, $extension);
+		$imagen->moveTo("../public/imagenes" . DIRECTORY_SEPARATOR . $nombreArchivo);
+		return $nombreArchivo;
 	}
 
 	/**

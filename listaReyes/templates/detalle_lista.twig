@@ -14,7 +14,7 @@
 	<tbody>
 		{% for producto in productos %}
 		<tr>
-			<td>{{ producto.IMAGEN }}</td>
+			<td><img src="{{base_url()}}/imagenes/{{producto.IMAGEN}}" alt="Smiley face" height="80" width="80"> </td>
 			<td>{{ producto.NOMBRE_PRODUCTO }}</td>
 			<td><a href="{{ producto.ENLACE_COMPRA }}" target="_blank">Link</a></td>
 			<td><a href="{{ path_for('') }}">Ver</a></td>
