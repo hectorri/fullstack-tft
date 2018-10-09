@@ -53,7 +53,7 @@ $app->get('/lista/{idLista}/{nombreLista}', 'ControladorProducto:listarProductos
 // ruta para cargar el formulario para crear producto
 $app->get('/nuevoProducto/{idLista}', function($request, $response, $args){
 	return $this->view->render($response, 'formulario_producto.twig', array(
-        'variable' => 'valorVarible'));
+        'idLista' => $args['idLista']));
 })->setName('producto.nuevo');
 
 // ruta para crear un producto
