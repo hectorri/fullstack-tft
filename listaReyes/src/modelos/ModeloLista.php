@@ -15,7 +15,6 @@ class ModeloLista extends Eloquent {
    
 	// Define los campos que pueden llenarse en la tabla
 	protected $fillable = [
-		'id',
 		'nombre',
 		'email'
 	];

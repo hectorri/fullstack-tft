@@ -74,7 +74,6 @@ class ControladorLista {
 			//crea una nueva Lista a partir del modelo
 			$lista = new Lista;
 
-			$lista->id = Lista::max('id') + 1;
 			$lista->nombre = $param['nombre'];
 			$lista->email = $_SESSION['email'];
 			$lista->save(); //guarda la lista
