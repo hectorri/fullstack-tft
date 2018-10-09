@@ -1,17 +1,23 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+<h1>{{ nombreLista }}</h1>
 <table>
 	<thead>
 		<tr>
-			<th>{{ nombreLista }}</th>
+			<th>IMAGEN</th>
+			<th>PRODUCTO</th>
+			<th>ENLACE</th>
+			<th colspan="2">OPCIONES</th>
 		</tr>
 	</thead>
 	<tbody>
 		{% for producto in productos %}
 		<tr>
+			<td>{{ producto.IMAGEN }}</td>
 			<td>{{ producto.NOMBRE_PRODUCTO }}</td>
-			<td><a href="{{ path_for('') }}">Marcar Comprado</a></td>
+			<td><a href="{{ producto.ENLACE_COMPRA }}" target="_blank">Link</a></td>
+			<td><a href="{{ path_for('') }}">Ver</a></td>
             <td><a href="{{ path_for('') }}">Eliminar</a></td>
 		</tr>
 		{% endfor %}
