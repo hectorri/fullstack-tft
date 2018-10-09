@@ -9,7 +9,6 @@ use Slim\Http\Response;
 $app->get('/', function($request, $response, $args){
 	return $this->view->render($response, "index.twig");
 })->setName('inicio');
-// index
 $app->get('/inicio', function($request, $response, $args){
 	return $this->view->render($response, "index.twig");
 });

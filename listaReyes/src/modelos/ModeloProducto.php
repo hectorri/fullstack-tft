@@ -15,6 +15,7 @@ class ModeloProducto extends Eloquent {
    
 	// Define los campos que pueden llenarse en la tabla
 	protected $fillable = [
+		'id_lista',
 		'nombre_producto',
 		'descripcion',
 		'imagen',
