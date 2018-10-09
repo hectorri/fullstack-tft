@@ -1,0 +1,21 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<table>
+	<thead>
+		<tr>
+			<th>Nombre de la lista</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for lista in listas %}
+		<tr>
+			<td>{{ lista.nombre }}</td>
+			<td><a href="{{ path_for('') }}">Ver</a></td>
+            <td><a href="{{ path_for('') }}">Editar</a></td>
+			<td><a href="{{ path_for('') }}">Eliminar</a><td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

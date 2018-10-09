@@ -6,9 +6,13 @@ use Slim\Http\Response;
 // Routes
 
 // index
-$app->get('/inicio', function($request, $response, $args){
+$app->get('/', function($request, $response, $args){
 	return $this->view->render($response, "index.twig");
 })->setName('inicio');
+// index
+$app->get('/inicio', function($request, $response, $args){
+	return $this->view->render($response, "index.twig");
+});
 
 // ruta para cargar el formulario para crear usuario
 $app->get('/registro', function($request, $response, $args){
@@ -31,3 +35,16 @@ $app->get('/registrado', function($request, $response, $args){
 $app->post('/acceso', 'ControladorUsuario:login');
 
 $app->get('/salir', 'ControladorUsuario:logout')->setName('usuario.salir');
+
+// ruta para cargar el formulario para crear una lista
+$app->get('/nuevaLista', function($request, $response, $args){
+	return $this->view->render($response, 'formulario_lista.twig');
+})->setName('lista.nueva');
+
+// ruta para crear una nueva lista
+$app->post('/nuevaLista', 'ControladorLista:nueva');
+
+// ruta para cargar las listas de un usuario
+$app->get('/misListas', function ($request, $response, $args){
+	return $this->view->render($response, 'listado_listas.twig');
+})->setName('lista.misListas');

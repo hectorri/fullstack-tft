@@ -2,7 +2,7 @@
 
 namespace App\Controladores;
 
-use App\Modelos\ModeloListaProductos as Lista; // para usar el modelo de producto
+use App\Modelos\ModeloLista as Lista; // para usar el modelo de producto
 use Slim\Views\Twig; // Las vistas de la aplicación
 use Slim\Router; // Las rutas de la aplicación
 use Respect\Validation\Validator as v; // para usar el validador de Respect
@@ -11,7 +11,7 @@ use Respect\Validation\Validator as v; // para usar el validador de Respect
 /**
  * Clase de controlador para producto
  */
-class ControladorListaProductos {
+class ControladorLista {
 
     // objeto de la clase Twig
     protected $view;
@@ -35,7 +35,8 @@ class ControladorListaProductos {
      */
     public function validaArgs($args){
         $valid = [		
-            // TODO
+            // verifica que se reciba una cadena de al menos longitud 2
+            v::stringType()->length(2)->validate($args['nombre']),
         ];
         
 		return $valid;
@@ -66,8 +67,20 @@ class ControladorListaProductos {
     * @param type Slim\Http\Request $request - solicitud http
     * @param type Slim\Http\Response $response - respuesta http
     */
-    public function crea($request, $response, $args) {
-		//TODO
+    public function nueva($request, $response, $args) {
+		$param = $request->getParsedBody();
+		$validaciones = $this->validaArgs($param); // hace las validaciones
+		if($this->verifica($validaciones)){
+			//crea una nueva Lista a partir del modelo
+			$lista = new Lista;
+
+			$lista->id = Lista::max('id') + 1;
+			$lista->nombre = $param['nombre'];
+			$lista->email = $_SESSION['email'];
+			$lista->save(); //guarda la lista
+
+			return $response->withRedirect('misListas', 301);
+		}
 	}
 
 	/**
@@ -75,7 +88,16 @@ class ControladorListaProductos {
     * @param type Slim\Http\Request $request - solicitud http
     * @param type Slim\Http\Response $response - respuesta http
     */
-    public function elimina($request, $response, $args) {
+    public function eliminar($request, $response, $args) {
 		//TODO
 	}
+
+	    /**
+     * Obtiene todos los usuarios de la tabla usuarios y los manda a la vista
+	 * @param type Slim\Http\Request $request - solicitud http
+	 * @param type Slim\Http\Response $response - respuesta http
+     */
+    public function misListas($request, $response, $args){
+		return $this->view->render($response, 'listado_listas.twig', ['listas' => Lista::all()]);
+    }
 }

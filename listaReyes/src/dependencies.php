@@ -38,7 +38,17 @@ $container['db'] = function ($container) {
     return $capsule;
 };
 
-// controller:users
+// controller:usuarios
 $container['ControladorUsuario'] = function($container){
 	return new App\Controladores\ControladorUsuario($container['view'], $container['router']);
+};
+
+// controller:listas
+$container['ControladorLista'] = function($container){
+	return new App\Controladores\ControladorLista($container['view'], $container['router']);
+};
+
+// controller:productos
+$container['ControladorProducto'] = function($container){
+	return new App\Controladores\ControladorProducto($container['view'], $container['router']);
 };
