@@ -1,0 +1,13 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+{# manda los datos del formulario a la ruta 'usuario.acceso' con un método post #}
+<form action="{{ path_for('usuario.acceso') }}"  method="post" autocomplete="off">
+    <label for="email">Correo
+		<input type="email" name="email" id="email" placeholder="Escribe tu correo">
+    </label>
+    <label for="contrasena">Contraseña
+		<input type="password" name="contrasena" id="contrasena" placeholder="Escribe tu contraseña">
+    <button type="submit">Entrar</button>
+{% endblock %}

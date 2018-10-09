@@ -76,7 +76,7 @@ class ControladorUsuario {
     * @param type Slim\Http\Request $request - solicitud http
     * @param type Slim\Http\Response $response - respuesta http
     */
-    public function crea($request, $response, $args) {
+    public function registro($request, $response, $args) {
 		/*
 		 getParsedBody() toma los parametros del cuerpo de $request que estén
 		 como json o xml y lo parsea de un modo que PHP lo  entienda 
@@ -109,8 +109,12 @@ class ControladorUsuario {
                 // crea una ruta para el usuario con su id
                 $path =  $request->getUri()->getPath() . '/' . $usuario->id;
 
-                return $response->withStatus(201); // el usuario fue creado con éxito
+                return $response->withRedirect('registrado', 301); // el usuario fue creado con éxito
 			}
 		}
+	}
+
+	public function login($request, $response, $args) {
+			
 	}
 }

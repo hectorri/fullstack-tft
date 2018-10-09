@@ -3,6 +3,7 @@
 {% block content %}
 
 {# la función path_for('') llama la ruta con el nombre que recibe como parametro #} 
-<a href="{{ path_for('usuario.registro') }}">Registrarse</a>
-<a href="{{ path_for('usuario.acceso') }}">Iniciar sesión</a>
+Registro realizado correctamente, ahora puede iniciar sesión
+<p><a href="{{ path_for('usuario.acceso') }}">Iniciar sesión</a></p>
+
 {% endblock %}
