@@ -19,4 +19,5 @@
 		<input type="text" name="enlace_compra" id="enlace_compra" placeholder="Enlace">
     <button type="submit">Aceptar</button>
 </form>
+<p><a href="{{ path_for('producto.lista', {'idLista': idLista, 'nombreLista': nombreLista})}}">Volver</a></p>
 {% endblock %}
