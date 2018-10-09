@@ -98,6 +98,8 @@ class ControladorLista {
 	 * @param type Slim\Http\Response $response - respuesta http
      */
     public function misListas($request, $response, $args){
-		return $this->view->render($response, 'listado_listas.twig', ['listas' => Lista::all()]);
+		return $this->view->render($response, 
+		'listado_listas.twig', 
+		['listas' => Lista::where('email', $_SESSION['email'])->get()]);
     }
 }

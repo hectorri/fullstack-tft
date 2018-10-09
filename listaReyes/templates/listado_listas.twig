@@ -10,7 +10,7 @@
 	<tbody>
 		{% for lista in listas %}
 		<tr>
-			<td>{{ lista.nombre }}</td>
+			<td>{{ lista.NOMBRE }}</td>
 			<td><a href="{{ path_for('') }}">Ver</a></td>
             <td><a href="{{ path_for('') }}">Editar</a></td>
 			<td><a href="{{ path_for('') }}">Eliminar</a><td>
@@ -18,4 +18,5 @@
 		{% endfor %}
 	</tbody>
 </table>
+<p><a href=".">Volver</a></p>
 {% endblock %}

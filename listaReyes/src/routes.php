@@ -45,6 +45,4 @@ $app->get('/nuevaLista', function($request, $response, $args){
 $app->post('/nuevaLista', 'ControladorLista:nueva');
 
 // ruta para cargar las listas de un usuario
-$app->get('/misListas', function ($request, $response, $args){
-	return $this->view->render($response, 'listado_listas.twig');
-})->setName('lista.misListas');
+$app->get('/misListas', 'ControladorLista:misListas')->setName('lista.misListas');
