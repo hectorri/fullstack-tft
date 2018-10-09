@@ -34,7 +34,7 @@ $app->get('/registrado', function($request, $response, $args){
 
 $app->post('/acceso', 'ControladorUsuario:login');
 
-$app->get('/salir', 'ControladorUsuario:logout')->setName('usuario.salir');
+$app->get('/salir', 'ControladorUsuario:logout')->setName('usuario.logout');
 
 // ruta para cargar el formulario para crear una lista
 $app->get('/nuevaLista', function($request, $response, $args){
@@ -46,3 +46,14 @@ $app->post('/nuevaLista', 'ControladorLista:nueva');
 
 // ruta para cargar las listas de un usuario
 $app->get('/misListas', 'ControladorLista:misListas')->setName('lista.misListas');
+
+// ruta para cargar el detalle de una lista
+$app->get('/lista/{idLista}/{nombreLista}', 'ControladorProducto:listarProductos')->setName('producto.lista');
+
+// ruta para cargar el formulario para crear producto
+$app->get('/nuevoProducto/{idLista}', function($request, $response, $args){
+	return $this->view->render($response, 'formulario_producto.twig');
+})->setName('producto.nuevo');
+
+// ruta para crear un producto
+$app->post('/nuevoProducto', 'ControladorProducto:nuevo');

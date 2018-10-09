@@ -8,8 +8,7 @@
     <h2>Hola {{ session.nombre }}!</h2>
     <a href="{{ path_for('lista.nueva') }}">Nueva lista</a>
     <a href="{{ path_for('lista.misListas') }}">Mis listas</a>
-    <a href="{{ path_for('') }}">Nuevo producto</a>
-    <a href="{{ path_for('usuario.salir') }}">Cerrar sesión</a>
+    <a href="{{ path_for('usuario.logout') }}">Cerrar sesión</a>
 
 {% else %}
     <a href="{{ path_for('usuario.registro') }}">Registrarse</a>

@@ -11,7 +11,7 @@
 		{% for lista in listas %}
 		<tr>
 			<td>{{ lista.NOMBRE }}</td>
-			<td><a href="{{ path_for('') }}">Ver</a></td>
+			<td><a href="{{ path_for('producto.lista', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">Ver</a></td>
             <td><a href="{{ path_for('') }}">Editar</a></td>
 			<td><a href="{{ path_for('') }}">Eliminar</a><td>
 		</tr>

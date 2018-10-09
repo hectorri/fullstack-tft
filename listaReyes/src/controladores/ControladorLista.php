@@ -2,7 +2,7 @@
 
 namespace App\Controladores;
 
-use App\Modelos\ModeloLista as Lista; // para usar el modelo de producto
+use App\Modelos\ModeloLista as Lista; // para usar el modelo de lista
 use Slim\Views\Twig; // Las vistas de la aplicación
 use Slim\Router; // Las rutas de la aplicación
 use Respect\Validation\Validator as v; // para usar el validador de Respect
@@ -91,7 +91,7 @@ class ControladorLista {
 		//TODO
 	}
 
-	    /**
+	/**
      * Obtiene todos los usuarios de la tabla usuarios y los manda a la vista
 	 * @param type Slim\Http\Request $request - solicitud http
 	 * @param type Slim\Http\Response $response - respuesta http
@@ -100,5 +100,6 @@ class ControladorLista {
 		return $this->view->render($response, 
 		'listado_listas.twig', 
 		['listas' => Lista::where('email', $_SESSION['email'])->get()]);
-    }
+	}
+
 }

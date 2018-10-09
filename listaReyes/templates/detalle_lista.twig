@@ -1,0 +1,22 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<table>
+	<thead>
+		<tr>
+			<th>{{ nombreLista }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for producto in productos %}
+		<tr>
+			<td>{{ producto.NOMBRE_PRODUCTO }}</td>
+			<td><a href="{{ path_for('') }}">Marcar Comprado</a></td>
+            <td><a href="{{ path_for('') }}">Eliminar</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<p><a href="{{ path_for('producto.nuevo', {'idLista': idLista}) }}">Añadir producto</a></p>
+<p><a href="{{ path_for('lista.misListas') }}">Volver</a></p>
+{% endblock %}

@@ -66,7 +66,7 @@ class ControladorProducto {
     * @param type Slim\Http\Request $request - solicitud http
     * @param type Slim\Http\Response $response - respuesta http
     */
-    public function crea($request, $response, $args) {
+    public function nuevo($request, $response, $args) {
 		//TODO
 	}
 
@@ -77,5 +77,18 @@ class ControladorProducto {
     */
     public function elimina($request, $response, $args) {
 		//TODO
+	}
+
+	/**
+     * Obtiene todos los productos de una lista
+	 * @param type Slim\Http\Request $request - solicitud http
+	 * @param type Slim\Http\Response $response - respuesta http
+     */
+    public function listarProductos($request, $response, $args){
+		return $this->view->render($response, 
+		'detalle_lista.twig', 
+		['productos' => Producto::where('ID_LISTA', $args['idLista'])->get(),
+		 'idLista' => $args['idLista'],
+		 'nombreLista' => $args['nombreLista']]);
 	}
 }
