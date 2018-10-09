@@ -17,6 +17,6 @@
 		{% endfor %}
 	</tbody>
 </table>
-<p><a href="{{ path_for('producto.nuevo', {'idLista': idLista}) }}">Añadir producto</a></p>
+<p><a href="{{ path_for('producto.nuevo', {'idLista': idLista, 'nombreLista': nombreLista}) }}">Añadir producto</a></p>
 <p><a href="{{ path_for('lista.misListas') }}">Volver</a></p>
 {% endblock %}

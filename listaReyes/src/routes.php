@@ -50,10 +50,11 @@ $app->get('/misListas', 'ControladorLista:misListas')->setName('lista.misListas'
 $app->get('/lista/{idLista}/{nombreLista}', 'ControladorProducto:listarProductos')->setName('producto.lista');
 
 // ruta para cargar el formulario para crear producto
-$app->get('/nuevoProducto/{idLista}', function($request, $response, $args){
+$app->get('/nuevoProducto/{idLista}/{nombreLista}', function($request, $response, $args){
 	return $this->view->render($response, 'formulario_producto.twig', array(
-        'idLista' => $args['idLista']));
+		'idLista' => $args['idLista'],
+		'nombreLista' => $args['nombreLista']));
 })->setName('producto.nuevo');
 
 // ruta para crear un producto
-$app->post('/nuevoProducto', 'ControladorProducto:nuevo');
+$app->post('/nuevoProducto/{idLista}/{nombreLista}', 'ControladorProducto:nuevo');

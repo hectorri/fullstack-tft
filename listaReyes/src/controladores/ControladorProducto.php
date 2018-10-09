@@ -67,23 +67,23 @@ class ControladorProducto {
     * @param type Slim\Http\Response $response - respuesta http
     */
     public function nuevo($request, $response, $args) {
-		
-		print "nuevo";
+
 		$param = $request->getParsedBody();
 		$validaciones = $this->validaArgs($param); // hace las validaciones
 		if($this->verifica($validaciones)){
 			//crea un nuev Producto a partir del modelo
 			$producto = new Producto;
 
-			$producto->nombre = $param['nombre_producto'];
+			$producto->id_lista = $param['id_lista'];
+			$producto->nombre_producto = $param['nombre_producto'];
 			$producto->descripcion = $param['descripcion'];
 			$producto->imagen = $param['imagen'];
 			$producto->enlace_compra = $param['enlace_compra'];						
-			//$producto->email = $_SESSION['email'];
+
 			$producto->save(); //guarda el producto
 
-			//TODO ¿redirigir a lista de productos?
-			return $response->withRedirect('listarProductos', 301);
+			$url = $this->router->pathFor('producto.lista', ['idLista' => $param['id_lista'], 'nombreLista' => $param['nombreLista']]);
+			return $response->withStatus(301)->withHeader('Location', $url);
 		}
 	}
 
