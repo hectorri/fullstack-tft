@@ -26,7 +26,7 @@
 			</td>
 			<td><a href="{{ producto.ENLACE_COMPRA }}" target="_blank">Link</a></td>
 			<td>
-				<form action="{{ path_for('producto.cambiarEstado')}}"  method="post">
+				<form action="{{ path_for('producto.cambiarEstado', {'idLista': idLista, 'nombreLista': nombreLista})}}"  method="post">
 					<input type="hidden" name="id" id="id" value="{{producto.ID}}">
 					<input type="hidden" name="id_lista" id="id_lista" value="{{idLista}}">
 					<input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">

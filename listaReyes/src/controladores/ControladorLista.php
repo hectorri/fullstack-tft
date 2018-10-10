@@ -106,4 +106,24 @@ class ControladorLista {
 		['listas' => Lista::where('email', $_SESSION['email'])->get()]);
 	}
 
+	/**
+     * Obtiene todos los usuarios de la tabla usuarios y los manda a la vista
+	 * @param type Slim\Http\Request $request - solicitud http
+	 * @param type Slim\Http\Response $response - respuesta http
+     */
+    public function compartir($request, $response, $args){
+		$param = $request->getParsedBody();
+		// El mensaje
+		$mensaje = 'Hola '.$param['nombre'].' \r\nLínea 1\r\nLínea 2\r\nLínea 3';
+		// Si cualquier línea es más larga de 70 caracteres, se debería usar wordwrap()
+		$mensaje = wordwrap($mensaje, 70, "\r\n");
+		
+		// Enviarlo
+		mail($param['email'], $_SESSION['nombre'].' ha compartido una lista contigo', $mensaje);
+
+		return $this->view->render($response, 
+		'listado_listas.twig', 
+		['listas' => Lista::where('email', $_SESSION['email'])->get()]);
+	}
+
 }

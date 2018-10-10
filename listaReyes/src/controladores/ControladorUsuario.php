@@ -91,8 +91,11 @@ class ControladorUsuario {
         
 			// si el correo ya existe manda un error 403
             if($correo_existente){
-                echo $this->error('YA_ESTÁ_REGISTRADO_EL_CORREO', $request->getUri()->getPath(), 404);
-                return $this->response->withStatus(403);
+                return $this->view->render($response, 
+					'plantilla_mensaje.twig', 
+					['mensaje' => 'Dirección de correo ya registrada',
+					 'destino' => './acceso',
+					 'textoDestino' => 'Iniciar sesión']);
             } else {
             
 				//crea un nuevo usuario a partir del modelo
@@ -112,7 +115,12 @@ class ControladorUsuario {
                 // crea una ruta para el usuario con su id
                 $path =  $request->getUri()->getPath() . '/' . $usuario->id;
 
-                return $response->withRedirect('registrado', 301); // el usuario fue creado con éxito
+                //return $response->withRedirect('registrado', 301); // el usuario fue creado con éxito
+				return $this->view->render($response, 
+					'plantilla_mensaje.twig', 
+					['mensaje' => 'Registro realizado correctamente, ahora puede iniciar sesión',
+					 'destino' => './acceso',
+					 'textoDestino' => 'Iniciar sesión']);
 			}
 		}
 	}

@@ -53,6 +53,16 @@ $app->get('/lista/{idLista}/{nombreLista}', 'ControladorProducto:listarProductos
 //ruta para eliminar una lista
 $app->post('/eliminarLista', 'ControladorLista:eliminar')->setName('lista.eliminar');
 
+// ruta para cargar el formulario de compartir lista
+$app->get('/compartirLista/{idLista}/{nombreLista}', function($request, $response, $args){
+	return $this->view->render($response, 'formulario_compartir.twig', array(
+		'idLista' => $args['idLista'],
+		'nombreLista' => $args['nombreLista']));
+})->setName('lista.compartir');
+
+// ruta para compartir lista
+$app->post('/compartirLista/{idLista}/{nombreLista}', 'ControladorLista:compartir');
+
 // ruta para cargar el formulario para crear producto
 $app->get('/nuevoProducto/{idLista}/{nombreLista}', function($request, $response, $args){
 	return $this->view->render($response, 'formulario_producto.twig', array(

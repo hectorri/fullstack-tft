@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+<form action="{{ path_for('lista.compartir', {'idLista': idLista, 'nombreLista': nombreLista}) }}"  method="post" autocomplete="off">
+	<label for="nombre">Destinatario
+		<input type="text" name="nombre" id="nombre" placeholder="Escribe el nombre">
+    </label>
+    <label for="email">Correo
+		<input type="email" name="email" id="email" placeholder="Escribe email">
+    </label>
+    <button type="submit">Aceptar</button>
+</form>
+<p><a href=".">Volver</a></p>
+{% endblock %}
