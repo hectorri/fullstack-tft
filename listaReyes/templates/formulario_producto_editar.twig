@@ -2,20 +2,34 @@
 
 {% block content %}
 
-{# manda los datos del formulario a la ruta 'usuario.registro' con un método post #}
-<form action="{{ path_for('producto.editar', {'id': id, 'idLista': idLista, 'nombreLista': nombreLista})}}"  method="post" autocomplete="off" enctype="multipart/form-data">
-	<input type="hidden" name="id" id="id" value="{{id}}">
-  <input type="hidden" name="idLista" id="idLista" value="{{idLista}}">
-  <input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">
-  <label for="nombre_producto">Nombre
-		<input type="text" name="nombre_producto" id="nombre_producto" placeholder="Nombre Producto" value="{{nombre}}">
-    </label>
-    <label for="imagen">Imagen del Producto
-		<input type="file" name="imagen" id="imagen" placeholder="">
-    </label>
-    <label for="enlace_compra">Url Producto
-		<input type="text" name="enlace_compra" id="enlace_compra" placeholder="Enlace" value="{{enlace_compra}}">
-    <button type="submit">Aceptar</button>
-</form>
-<p><a href="{{ path_for('producto.lista', {'idLista': idLista, 'nombreLista': nombreLista})}}">Volver</a></p>
+<div class="main-w3layouts wrapper">
+  <h1>Lista de Regalos</h1>
+  <div class="main-agileinfo">
+    <div class="agileits-top"> 
+      <form action="{{ path_for('producto.editar', {'id': id, 'idLista': idLista, 'nombreLista': nombreLista})}}"  method="post" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="id" value="{{id}}">
+        <input type="hidden" name="idLista" id="idLista" value="{{idLista}}">
+        <input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">
+        <input type="text" name="nombre_producto" id="nombre_producto" placeholder="Nombre Producto" value="{{nombre}}">
+        <input type="text" name="enlace_compra" id="enlace_compra" placeholder="Enlace" value="{{enlace_compra}}">
+        <input type="file" name="imagen" id="imagen" placeholder="">
+        <input type="submit" value="GUARDAR">
+      </form>
+      <p><a class="inputLink" href="{{ path_for('producto.lista', {'idLista': idLista, 'nombreLista': nombreLista})}}">Volver</a></p>
+    </div>	 
+  </div>	
+  <ul class="w3lsg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
 {% endblock %}
