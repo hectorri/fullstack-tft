@@ -1,0 +1,1 @@
+Las imágenes subidas por los usuarios irán aquí.
