@@ -80,7 +80,6 @@ class ControladorProducto {
 
 			$producto->id_lista = $param['id_lista'];
 			$producto->nombre_producto = $param['nombre_producto'];
-			$producto->descripcion = $param['descripcion'];
 			$producto->imagen = $nombreArchivo;
 			$producto->enlace_compra = $param['enlace_compra'];						
 			$producto->comprado = 0;
@@ -119,5 +118,49 @@ class ControladorProducto {
 		['productos' => Producto::where('ID_LISTA', $args['idLista'])->get(),
 		 'idLista' => $args['idLista'],
 		 'nombreLista' => $args['nombreLista']]);
+	}
+
+	/**
+	 * Cambia el estado a comprado de un producto
+     * @param type Slim\Http\Request $request - la solicitud http
+     * @param type Slim\Http\Response $response - la respuesta http
+     * @param type array $args - argumentos para la función
+	*/
+	public function cambiarEstado($request, $response, $args) {
+		$param = $request->getParsedBody();
+		Producto::where('ID', $param['id'])->update(['comprado' => $param['estado']]);
+		$url = $this->router->pathFor('producto.lista', ['idLista' => $param['id_lista'], 'nombreLista' => $param['nombreLista']]);
+		return $response->withStatus(301)->withHeader('Location', $url);
+	}
+
+	/**
+	 * Editar un producto
+     * @param type Slim\Http\Request $request - la solicitud http
+     * @param type Slim\Http\Response $response - la respuesta http
+     * @param type array $args - argumentos para la función
+	*/
+	public function editar($request, $response, $args) {
+		// busca un usuario la id del arreglo de parametros en la tabla usuarios
+		$usuario = Usuario::find((int)$args['id']);
+		
+		if(!$usuario){
+			/*
+			Si no hay un usuario con la id de los parametros, entonces obtiene la uri de la solicitud,
+			redirecciona a la lista de usuarios y regresa una respuesta con la uri y un estado 404 (not found)
+			*/
+            $status = 404; 
+			$uri = $request->getUri()->withQuery('')->withPath($this->router->pathFor('listaUsuarios'));
+            return $response->withRedirect((string)$uri, $status);
+		} else{
+			$data = $request->getParsedBody(); // guarda los argumentos de la solicitud en un arreglo
+			$validaciones = $this->valida($data); // valida los datos
+			if (verifica($validaciones)){
+				$usuario->update($data); // Eloquent actualiza la información en la tabla 
+				
+				// regresa una respuesta con la uri y redirecciona a la vista especifica del usuario
+				$uri = $request->getUri()->withQuery('')->withPath($this->router->pathFor('usuario', ['id' => $usuario->id]));
+                return $response->withRedirect((string)$uri);
+			}
+		}
 	}
 }

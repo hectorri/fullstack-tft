@@ -3,17 +3,17 @@
 {% block content %}
 
 {# manda los datos del formulario a la ruta 'usuario.registro' con un método post #}
-<form action="{{ path_for('producto.nuevo', {'idLista': idLista, 'nombreLista': nombreLista})}}"  method="post" autocomplete="off" enctype="multipart/form-data">
+<form action="{{ path_for('producto.editar', {'id': id, 'idLista': idLista, 'nombreLista': nombreLista})}}"  method="patch" autocomplete="off" enctype="multipart/form-data">
 	<input type="hidden" name="id_lista" id="id_lista" value="{{idLista}}">
   <input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">
   <label for="nombre_producto">Nombre
-		<input type="text" name="nombre_producto" id="nombre_producto" placeholder="Nombre Producto">
+		<input type="text" name="nombre_producto" id="nombre_producto" placeholder="Nombre Producto" value="{{nombre}}">
     </label>
     <label for="imagen">Imagen del Producto
 		<input type="file" name="imagen" id="imagen" placeholder="">
     </label>
     <label for="enlace_compra">Url Producto
-		<input type="text" name="enlace_compra" id="enlace_compra" placeholder="Enlace">
+		<input type="text" name="enlace_compra" id="enlace_compra" placeholder="Enlace" value="{{enlace_compra}}">
     <button type="submit">Aceptar</button>
 </form>
 <p><a href="{{ path_for('producto.lista', {'idLista': idLista, 'nombreLista': nombreLista})}}">Volver</a></p>

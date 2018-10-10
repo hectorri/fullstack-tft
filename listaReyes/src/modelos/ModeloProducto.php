@@ -17,7 +17,6 @@ class ModeloProducto extends Eloquent {
 	protected $fillable = [
 		'id_lista',
 		'nombre_producto',
-		'descripcion',
 		'imagen',
 		'enlace_compra',
 		'comprado'

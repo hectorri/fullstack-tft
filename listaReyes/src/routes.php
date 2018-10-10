@@ -1,5 +1,6 @@
 <?php
 
+use App\Modelos\ModeloProducto as Producto;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -58,3 +59,19 @@ $app->get('/nuevoProducto/{idLista}/{nombreLista}', function($request, $response
 
 // ruta para crear un producto
 $app->post('/nuevoProducto/{idLista}/{nombreLista}', 'ControladorProducto:nuevo');
+
+//ruta para cambiar estado de un producto
+$app->post('/cambiarEstado/{idLista}/{nombreLista}', 'ControladorProducto:cambiarEstado')->setName('producto.cambiarEstado');
+
+// rutas para editar un producto
+$app->get('/editarProducto/{id}/{idLista}/{nombreLista}', function($request, $response, $args){
+	$producto = Producto::where('ID', $args['id'])->get()->first();
+	return $this->view->render($response, 'formulario_producto_editar.twig', array(
+		'id' => $args['id'],
+		'nombre' => $producto['NOMBRE_PRODUCTO'],
+		'imagen' => $producto['IMAGEN'],
+		'enlace_compra' => $producto['ENLACE_COMPRA'],
+		'idLista' => $args['idLista'],
+		'nombreLista' => $args['nombreLista']));
+})->setName('usuario.editar');
+$app->patch('/editarProducto/{id}/{idLista}/{nombreLista}', 'ControladorProducto:editar')->setName('producto.editar');
