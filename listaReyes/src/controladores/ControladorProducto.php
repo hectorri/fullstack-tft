@@ -83,7 +83,7 @@ class ControladorProducto {
 			$producto->descripcion = $param['descripcion'];
 			$producto->imagen = $nombreArchivo;
 			$producto->enlace_compra = $param['enlace_compra'];						
-
+			$producto->comprado = 0;
 			$producto->save(); //guarda el producto
 
 			$url = $this->router->pathFor('producto.lista', ['idLista' => $param['id_lista'], 'nombreLista' => $param['nombreLista']]);

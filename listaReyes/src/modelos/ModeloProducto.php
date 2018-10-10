@@ -19,6 +19,7 @@ class ModeloProducto extends Eloquent {
 		'nombre_producto',
 		'descripcion',
 		'imagen',
-		'enlace_compra'
+		'enlace_compra',
+		'comprado'
 	];
 }
