@@ -106,6 +106,18 @@ input[type="text"],input[type="password"]{
 :-ms-input-placeholder {  
    color: #fff;  
 } 
+input[type="file"] {
+	font-size: 0.8em;
+    color: #fff;
+    background: #6439af;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 1em;
+    -webkit-appearance: none;
+    width: 92%;
+    margin: 1em 0; 
+}
 input[type="submit"] {
     font-size: 1em;
     color: #fff;
