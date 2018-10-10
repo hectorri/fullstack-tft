@@ -14,21 +14,21 @@
 		<tr>
 			<td>{{ lista.NOMBRE }}</td>
 			<td>
-				<td><a href="{{ path_for('producto.lista', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">Ver</a></td>
+				<td><a href="{{ path_for('producto.lista', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">VER</a></td>
 			</td>
 			<td>
 				<form action="{{ path_for('lista.eliminar')}}"  method="post">
 					<input type="hidden" name="id" id="id" value="{{lista.ID}}">
-					<button type="submit">Eliminar</button>
+					<button type="submit">ELIMINAR</button>
 				</form>
 			<td>
 			<td>
-				<td><a href="{{ path_for('lista.compartir', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">Compartir</a></td>
+				<td><a href="{{ path_for('lista.compartir', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">COMPARTIR</a></td>
 			</td>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
-<p><a href="{{ path_for('lista.nueva') }}">Nueva lista</a></p>
+<p><a href="{{ path_for('lista.nueva') }}">NUEVA LISTA</a></p>
 <p><a href=".">Volver</a></p>
 {% endblock %}

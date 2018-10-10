@@ -138,10 +138,18 @@ class ControladorUsuario {
 				$_SESSION['nombre'] = $usuarioEncontrado['NOMBRE'];
 				return $response->withRedirect('inicio', 301);
 			}else{
-				return $response->withRedirect('contrasenaincorrecta', 301);
+				return $this->view->render($response, 
+					'plantilla_mensaje.twig', 
+					['mensaje' => 'Contraseña incorrecta',
+					 'destino' => './acceso',
+					 'textoDestino' => 'Volver']);
 			}
 		}else{
-			return $response->withRedirect('noexistemail', 301);
+			return $this->view->render($response, 
+					'plantilla_mensaje.twig', 
+					['mensaje' => 'La cuenta no existe',
+					 'destino' => './acceso',
+					 'textoDestino' => 'Volver']);
 		}
 	}
 
