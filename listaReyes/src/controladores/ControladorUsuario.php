@@ -118,7 +118,7 @@ class ControladorUsuario {
                 //return $response->withRedirect('registrado', 301); // el usuario fue creado con éxito
 				return $this->view->render($response, 
 					'plantilla_mensaje.twig', 
-					['mensaje' => 'Registro realizado correctamente, ahora puede iniciar sesión',
+					['mensaje' => 'Registro realizado correctamente',
 					 'destino' => './acceso',
 					 'textoDestino' => 'Iniciar sesión']);
 			}

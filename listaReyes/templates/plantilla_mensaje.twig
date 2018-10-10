@@ -2,8 +2,26 @@
 
 {% block content %}
 
-{# la función path_for('') llama la ruta con el nombre que recibe como parametro #} 
-{{mensaje}}
-<p><a href="{{destino}}">{{textoDestino}}</a></p>
+<div class="main-w3layouts wrapper">
+  <h1>Lista de Regalos</h1>
+    <div class="main-agileinfo">
+        <div class="agileits-top"> 
+            <p>{{mensaje}}</p>
+            <p><a href="{{destino}}">{{textoDestino}}</a></p>
+        </div>	 
+    </div>	
+  <ul class="w3lsg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
 
 {% endblock %}

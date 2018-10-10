@@ -2,19 +2,32 @@
 
 {% block content %}
 
-{# manda los datos del formulario a la ruta 'usuario.registro' con un método post #}
-<form action="{{ path_for('usuario.registro') }}"  method="post" autocomplete="off">
-	<label for="nombre">Nombre
-		<input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
-    </label>
-	<label for="apellidos">Apellidos
-		<input type="text" name="apellidos" id="apellidos" placeholder="Escribe tus apellidos">
-    </label>
-    <label for="email">Correo
-		<input type="email" name="email" id="email" placeholder="Escribe tu correo">
-    </label>
-    <label for="contrasena">Contraseña
-		<input type="password" name="contrasena" id="contrasena" placeholder="Escribe tu contraseña">
-    <button type="submit">Aceptar</button>
-</form>
+<div class="main-w3layouts wrapper">
+  <h1>Lista de Regalos</h1>
+  <div class="main-agileinfo">
+    <div class="agileits-top"> 
+      <form action="{{ path_for('usuario.registro') }}" method="post"> 
+        <input class="text" type="text" name="nombre" id="nombre" placeholder="Nombre" required="">
+        <input class="text" type="text" name="apellidos" id="apellidos" placeholder="Apellidos" required="">
+        <input class="text" type="text" name="email" id="email" placeholder="Email" required="">
+        <input class="text" type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required=""> 
+        <input type="submit" value="REGISTRARSE">
+      </form>
+      <p>¿Ya tiene cuenta? <a href="{{ path_for('usuario.login') }}"> Inicie sesión</a></p>
+    </div>	 
+  </div>	
+  <ul class="w3lsg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>	
+
 {% endblock %}

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lista de Reyes</title>
+    <title>Lista de Regalos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	{% block stylesheets %}
-	
-	{# Aquí incluimos los archivos CSS o CDN de CSS que usemos #}
-	<link href="url de cdn" type="text/css" rel="stylesheet" />
-	
+
+	<link href="/tft/listaReyes/public/estilos/global.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='//fonts.googleapis.com/css?family=Text+Me+One' rel='stylesheet' type='text/css'>
 	{# la función base_url() le indica a twig que busque desde el directorio raíz de proyecto #}
 	
 	<link href="{{ base_url() }}/directorio/de/css" type="text/css" rel="stylesheet" />
