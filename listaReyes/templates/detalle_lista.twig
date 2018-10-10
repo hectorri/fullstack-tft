@@ -15,7 +15,7 @@
 	<tbody>
 		{% for producto in productos %}
 		<tr>
-			<td><img src="{{base_url()}}/imagenes/{{producto.IMAGEN}}" alt="Smiley face" height="80" width="80"> </td>
+			<td><img src="{{base_url()}}/imagenes/{{producto.IMAGEN}}" alt="{{ producto.NOMBRE_PRODUCTO }}" height="80" width="80"> </td>
 			<td>{{ producto.NOMBRE_PRODUCTO }}</td>
 						<td>
 				{% if producto.COMPRADO == 1 %}

@@ -74,4 +74,5 @@ $app->get('/editarProducto/{id}/{idLista}/{nombreLista}', function($request, $re
 		'idLista' => $args['idLista'],
 		'nombreLista' => $args['nombreLista']));
 })->setName('usuario.editar');
-$app->patch('/editarProducto/{id}/{idLista}/{nombreLista}', 'ControladorProducto:editar')->setName('producto.editar');
+
+$app->post('/editarProducto/{id}/{idLista}/{nombreLista}', 'ControladorProducto:editar')->setName('producto.editar');

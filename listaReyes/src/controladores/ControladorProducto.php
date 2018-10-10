@@ -71,11 +71,14 @@ class ControladorProducto {
 		$param = $request->getParsedBody();
 		$validaciones = $this->validaArgs($param); // hace las validaciones
 		if($this->verifica($validaciones)){
-			$archivo = $request->getUploadedFiles();
-			$imagen = $archivo['imagen'];
-			$nombreArchivo = $this->guardarImagen($imagen);
-
-			//crea un nuev Producto a partir del modelo
+			if((int)$_FILES['imagen']['size'] == 0){
+				$nombreArchivo = '';
+			}else{
+				$archivo = $request->getUploadedFiles();
+				$imagen = $archivo['imagen'];
+				$nombreArchivo = $this->guardarImagen($imagen);
+			}
+			//crea un nuevo Producto a partir del modelo
 			$producto = new Producto;
 
 			$producto->id_lista = $param['id_lista'];
@@ -140,27 +143,23 @@ class ControladorProducto {
      * @param type array $args - argumentos para la función
 	*/
 	public function editar($request, $response, $args) {
-		// busca un usuario la id del arreglo de parametros en la tabla usuarios
-		$usuario = Usuario::find((int)$args['id']);
-		
-		if(!$usuario){
-			/*
-			Si no hay un usuario con la id de los parametros, entonces obtiene la uri de la solicitud,
-			redirecciona a la lista de usuarios y regresa una respuesta con la uri y un estado 404 (not found)
-			*/
-            $status = 404; 
-			$uri = $request->getUri()->withQuery('')->withPath($this->router->pathFor('listaUsuarios'));
-            return $response->withRedirect((string)$uri, $status);
-		} else{
-			$data = $request->getParsedBody(); // guarda los argumentos de la solicitud en un arreglo
-			$validaciones = $this->valida($data); // valida los datos
-			if (verifica($validaciones)){
-				$usuario->update($data); // Eloquent actualiza la información en la tabla 
-				
-				// regresa una respuesta con la uri y redirecciona a la vista especifica del usuario
-				$uri = $request->getUri()->withQuery('')->withPath($this->router->pathFor('usuario', ['id' => $usuario->id]));
-                return $response->withRedirect((string)$uri);
+			$param = $request->getParsedBody();
+			$producto = Producto::where('ID', $param['id'])->get()->first();
+
+			if((int)$_FILES['imagen']['size'] == 0){
+				$nombreArchivo = $producto['IMAGEN'];
+			}else{
+				$archivo = $request->getUploadedFiles();
+				$imagen = $archivo['imagen'];
+				$nombreArchivo = $this->guardarImagen($imagen);
 			}
+
+			Producto::where('ID', $param['id'])->update(
+				['nombre_producto' => $param['nombre_producto'],
+				'imagen' => $nombreArchivo]);
+
+			$url = $this->router->pathFor('producto.lista', 
+			['idLista' => $param['idLista'], 'nombreLista' => $param['nombreLista']]);
+			return $response->withStatus(301)->withHeader('Location', $url);
 		}
 	}
-}
