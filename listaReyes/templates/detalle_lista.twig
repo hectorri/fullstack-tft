@@ -26,7 +26,7 @@
 			</td>
 			<td><a href="{{ producto.ENLACE_COMPRA }}" target="_blank">Link</a></td>
 			<td>
-				<form action="{{ path_for('producto.cambiarEstado', {'idLista': idLista, 'nombreLista': nombreLista})}}"  method="post">
+				<form action="{{ path_for('producto.cambiarEstado')}}"  method="post">
 					<input type="hidden" name="id" id="id" value="{{producto.ID}}">
 					<input type="hidden" name="id_lista" id="id_lista" value="{{idLista}}">
 					<input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">
@@ -40,7 +40,14 @@
 				</form>
 			</td>
 			<td><a href="{{ path_for('producto.editar', {'id': producto.ID, 'idLista': idLista, 'nombreLista': nombreLista})}}">Editar</a></td>
-            <td><a href="{{ path_for('') }}">Eliminar</a></td>
+            <td>
+				<form action="{{ path_for('producto.eliminar')}}"  method="post">
+					<input type="hidden" name="id" id="id" value="{{producto.ID}}">
+					<input type="hidden" name="idLista" id="idLista" value="{{idLista}}">
+					<input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">
+					<button type="submit">Eliminar</button>
+				</form>
+			</td>
 		</tr>
 		{% endfor %}
 	</tbody>

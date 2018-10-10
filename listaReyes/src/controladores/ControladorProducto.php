@@ -106,8 +106,11 @@ class ControladorProducto {
     * @param type Slim\Http\Request $request - solicitud http
     * @param type Slim\Http\Response $response - respuesta http
     */
-    public function elimina($request, $response, $args) {
-		//TODO
+    public function eliminar($request, $response, $args) {
+		$param = $request->getParsedBody();
+		Producto::where('ID', $param['id'])->delete();
+		$url = $this->router->pathFor('producto.lista', ['idLista' => $param['idLista'], 'nombreLista' => $param['nombreLista']]);
+		return $response->withStatus(301)->withHeader('Location', $url);
 	}
 
 	/**

@@ -50,6 +50,9 @@ $app->get('/misListas', 'ControladorLista:misListas')->setName('lista.misListas'
 // ruta para cargar el detalle de una lista
 $app->get('/lista/{idLista}/{nombreLista}', 'ControladorProducto:listarProductos')->setName('producto.lista');
 
+//ruta para eliminar una lista
+$app->post('/eliminarLista', 'ControladorLista:eliminar')->setName('lista.eliminar');
+
 // ruta para cargar el formulario para crear producto
 $app->get('/nuevoProducto/{idLista}/{nombreLista}', function($request, $response, $args){
 	return $this->view->render($response, 'formulario_producto.twig', array(
@@ -61,7 +64,10 @@ $app->get('/nuevoProducto/{idLista}/{nombreLista}', function($request, $response
 $app->post('/nuevoProducto/{idLista}/{nombreLista}', 'ControladorProducto:nuevo');
 
 //ruta para cambiar estado de un producto
-$app->post('/cambiarEstado/{idLista}/{nombreLista}', 'ControladorProducto:cambiarEstado')->setName('producto.cambiarEstado');
+$app->post('/cambiarEstado', 'ControladorProducto:cambiarEstado')->setName('producto.cambiarEstado');
+
+//ruta para eliminar un producto
+$app->post('/eliminarProducto', 'ControladorProducto:eliminar')->setName('producto.eliminar');
 
 // rutas para editar un producto
 $app->get('/editarProducto/{id}/{idLista}/{nombreLista}', function($request, $response, $args){

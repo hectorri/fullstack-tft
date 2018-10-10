@@ -88,7 +88,11 @@ class ControladorLista {
     * @param type Slim\Http\Response $response - respuesta http
     */
     public function eliminar($request, $response, $args) {
-		//TODO
+		$param = $request->getParsedBody();
+		Lista::where('ID', $param['id'])->delete();
+		return $this->view->render($response, 
+		'listado_listas.twig', 
+		['listas' => Lista::where('email', $_SESSION['email'])->get()]);
 	}
 
 	/**
