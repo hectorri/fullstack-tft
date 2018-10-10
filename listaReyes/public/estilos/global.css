@@ -51,7 +51,8 @@ h1 {
     width: 35%;
     margin: 3.5em auto;
     background: rgba(41, 5, 105, 0.43);
-    background-size: cover;
+	background-size: cover;
+	max-width: 600px;
 }
 .agileits-top {
     padding: 0.5em 3em 3em; 
@@ -222,11 +223,12 @@ input[type="submit"]:hover {
 }
 
 .productos{
-	display: inline-block;
 	padding-top: 20px;
 	padding-left: 5%;
 	padding-right: 5%;
 	background-color: rgba(41, 5, 105, 0.43);
+	max-width: 500px;
+	margin-bottom: 5px;
 }
 
 .container {

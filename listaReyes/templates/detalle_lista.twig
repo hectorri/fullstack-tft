@@ -5,12 +5,12 @@
   <h1>{{ nombreLista }}</h1>
     <div class="main-agileinfo">
 	 <div class="agileits-content"> 
-		<div class="productos">
+		
 		{% for producto in productos %}
-
+		<div class="productos">
 			<div class="container">
 					<div class="producto-imagen">
-						<img src="{{base_url()}}/imagenes/{{producto.IMAGEN}}" alt="{{ producto.NOMBRE_PRODUCTO }}" height="180" width="180">
+						<img src="{{base_url()}}/imagenes/{{producto.IMAGEN}}" alt="{{ producto.NOMBRE_PRODUCTO }}">
 					</div>
 					<div class="producto-detalle">
 							</em>{{ producto.NOMBRE_PRODUCTO }}</em></br>
@@ -49,8 +49,9 @@
 								</form>
 					</div>
 				</div>
+			</div>
 		{% endfor %}
-	</div>
+	
 		</tbody>
 	</table>
 
