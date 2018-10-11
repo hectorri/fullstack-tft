@@ -22,6 +22,7 @@
 					<div class="producto-enlace">
 							<a class="botonProducto" href="{{ producto.ENLACE_COMPRA }}" target="_blank">Enlace</a>
 					</div>
+					{% if session.email %}
 					<div class="producto-pendiente">
 							<form action="{{ path_for('producto.cambiarEstado', {'idLista': idLista, 'nombreLista': nombreLista})}}"  method="post">
 									<input type="hidden" name="id" id="id" value="{{producto.ID}}">
@@ -47,12 +48,17 @@
 								<input type="submit" class="botonProducto" value="Eliminar">
 							</form>
 					</div>
+					{% endif %}
 				</div>
 			</div>
 		{% endfor %}
+{% if session.email %}
 <a class="inputLink" href="{{ path_for('producto.nuevo', {'id': id, 'idLista': idLista, 'nombreLista': nombreLista}) }}">AÑADIR PRODUCTO</a>
 <a class="inputLink" href="{{ path_for('lista.compartir', {'idLista': idLista, 'nombreLista': nombreLista})}}">COMPARTIR</a>
 <a class="inputLink" href="{{ path_for('lista.misListas') }}">VOLVER</a>
+{% else %}
+<p>¿No tiene cuenta? <a href="{{ path_for('usuario.registro') }}"> ¡Regístrese!</a></p>
+{% endif %}
 <ul class="w3lsg-bubbles">
     <li></li>
     <li></li>
