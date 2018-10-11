@@ -115,7 +115,6 @@ class ControladorUsuario {
                 // crea una ruta para el usuario con su id
                 $path =  $request->getUri()->getPath() . '/' . $usuario->id;
 
-                //return $response->withRedirect('registrado', 301); // el usuario fue creado con éxito
 				return $this->view->render($response, 
 					'plantilla_mensaje.twig', 
 					['mensaje' => 'Registro realizado correctamente',

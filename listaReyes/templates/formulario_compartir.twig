@@ -7,7 +7,7 @@
     <div class="agileits-top"> 
     <form action="{{ path_for('lista.compartir', {'idLista': idLista, 'nombreLista': nombreLista}) }}"  method="post" autocomplete="off">
         <input class="text" type="text" name="nombre" id="nombre" placeholder="Destinatario" required="">
-        <input class="text" type="password" name="email" id="email" placeholder="Email" required=""> 
+        <input class="text" type="text" name="email" id="email" placeholder="Email" required=""> 
         <input type="submit" value="COMPARTIR">
         <a class="inputLink" href="{{ path_for('lista.misListas') }}">VOLVER</a>
       </form>

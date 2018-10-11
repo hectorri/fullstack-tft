@@ -122,8 +122,10 @@ class ControladorLista {
 		mail($param['email'], $_SESSION['nombre'].' ha compartido una lista contigo', $mensaje);
 
 		return $this->view->render($response, 
-		'listado_listas.twig', 
-		['listas' => Lista::where('email', $_SESSION['email'])->get()]);
+					'plantilla_mensaje.twig', 
+					['mensaje' => 'Lista enviada',
+					 'destino' => './misListas',
+					 'textoDestino' => 'Volver a mis listas']);
 	}
 
 }
