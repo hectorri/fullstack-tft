@@ -54,7 +54,7 @@
 		{% endfor %}
 {% if session.email %}
 <a class="inputLink" href="{{ path_for('producto.nuevo', {'id': id, 'idLista': idLista, 'nombreLista': nombreLista}) }}">AÑADIR PRODUCTO</a>
-<a class="inputLink" href="{{ path_for('lista.compartir', {'idLista': idLista, 'nombreLista': nombreLista})}}">COMPARTIR</a>
+<a class="inputLink" href="{{ path_for('lista.compartir', {'idLista': idLista, 'nombreLista': nombreLista})}}">COMPARTIR LISTA</a>
 <a class="inputLink" href="{{ path_for('lista.misListas') }}">VOLVER</a>
 {% else %}
 <p>¿No tiene cuenta? <a href="{{ path_for('usuario.registro') }}"> ¡Regístrese!</a></p>
