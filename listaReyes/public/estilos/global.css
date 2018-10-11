@@ -231,6 +231,15 @@ input[type="submit"]:hover {
 	margin-bottom: 5px;
 }
 
+.listas{
+	padding-top: 20px;
+	padding-left: 5%;
+	padding-right: 5%;
+	background-color: rgba(41, 5, 105, 0.43);
+	max-width: 500px;
+	margin-bottom: 5px;
+}
+
 .container {
 	display: grid;
 	width: 100%;
@@ -240,6 +249,16 @@ input[type="submit"]:hover {
 	"producto-pendiente-2 producto-pendiente-3 producto-editar";
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
+	text-align: center;
+  }
+  .container-lista {
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-areas: "lista-nombre lista-nombre lista-nombre"
+	"lista-ver lista-eliminar lista-compartir";
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 	text-align: center;
   }
   .container > div {
@@ -263,6 +282,18 @@ input[type="submit"]:hover {
   }
   .producto-editar {
 	grid-area: producto-editar;
+  }
+  .lista-nombre {
+	grid-area: lista-nombre;
+  }
+  .lista-ver {
+	grid-area: lista-ver;
+  }
+  .lista-eliminar {
+	grid-area: lista-eliminar;
+  }
+  .lista-compartir {
+	grid-area: lista-compartir;
   }
 .agileits-top p {
     font-size: 1em;

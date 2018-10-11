@@ -8,12 +8,10 @@
   <div class="main-agileinfo">
     <div class="agileits-top"> 
       <p class="bienvenida" style="font-size:30px">Hola {{ session.nombre }}!</p>
-    </div>	 
-    <div class="agileits-content"> 
       <a class="inputLink" href="{{ path_for('lista.misListas') }}">Mis listas</a>
       <a class="inputLink" href="{{ path_for('lista.nueva') }}">Nueva lista</a>
       <a class="inputLink" href="{{ path_for('usuario.logout') }}">Salir</a>
-    </div>
+    </div>	 
   </div>
   {% else %}
   <div class="main-agileinfo">

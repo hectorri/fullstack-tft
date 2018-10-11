@@ -5,12 +5,11 @@
   <h1>{{ nombreLista }}</h1>
     <div class="main-agileinfo">
 	 <div class="agileits-content"> 
-		
 		{% for producto in productos %}
 		<div class="productos">
 			<div class="container">
 					<div class="producto-imagen">
-						<img src="{{base_url()}}/imagenes/{{producto.IMAGEN}}" alt="{{ producto.NOMBRE_PRODUCTO }}">
+						<img src="{{base_url()}}/imagenes/{{producto.IMAGEN}}" alt="{{ producto.NOMBRE_PRODUCTO }}" width="50%">
 					</div>
 					<div class="producto-detalle">
 							</em>{{ producto.NOMBRE_PRODUCTO }}</em></br>
@@ -42,20 +41,29 @@
 					</div>
 					<div class="producto-eliminar">
 							<form action="{{ path_for('producto.eliminar')}}"  method="post">
-									<input type="hidden" name="id" id="id" value="{{producto.ID}}">
-									<input type="hidden" name="idLista" id="idLista" value="{{idLista}}">
-									<input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">
-									<input type="submit" class="botonProducto" value="Eliminar">
-								</form>
+								<input type="hidden" name="id" id="id" value="{{producto.ID}}">
+								<input type="hidden" name="idLista" id="idLista" value="{{idLista}}">
+								<input type="hidden" name="nombreLista" id="nombreLista" value="{{nombreLista}}">
+								<input type="submit" class="botonProducto" value="Eliminar">
+							</form>
 					</div>
 				</div>
 			</div>
 		{% endfor %}
-	
-		</tbody>
-	</table>
-
-<p><a class="inputLink" href="{{ path_for('producto.nuevo', {'id': id, 'idLista': idLista, 'nombreLista': nombreLista}) }}">AÑADIR PRODUCTO</a></p>
-<p><a class="inputLink" href="{{ path_for('lista.misListas') }}">VOLVER</a></p>
-</div>
+<a class="inputLink" href="{{ path_for('producto.nuevo', {'id': id, 'idLista': idLista, 'nombreLista': nombreLista}) }}">AÑADIR PRODUCTO</a>
+<a class="inputLink" href="{{ path_for('lista.compartir', {'idLista': idLista, 'nombreLista': nombreLista})}}">COMPARTIR</a>
+<a class="inputLink" href="{{ path_for('lista.misListas') }}">VOLVER</a>
+<ul class="w3lsg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>	
 {% endblock %}

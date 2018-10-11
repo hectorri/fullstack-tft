@@ -1,34 +1,44 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-<h1>Listas de regalos de {{ session.nombre }}</h1>
-<table>
-	<thead>
-		<tr>
-			<th>LISTA</th>
-			<th colspan="4">OPCIONES</th>
-		</tr>
-	</thead>
-	<tbody>
+<div class="main-w3layouts wrapper">
+  <h1>Listas de regalos de {{ session.nombre }}</h1>
+    <div class="main-agileinfo">
+	 <div class="agileits-content"> 
 		{% for lista in listas %}
-		<tr>
-			<td>{{ lista.NOMBRE }}</td>
-			<td>
-				<td><a href="{{ path_for('producto.lista', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">VER</a></td>
-			</td>
-			<td>
-				<form action="{{ path_for('lista.eliminar')}}"  method="post">
-					<input type="hidden" name="id" id="id" value="{{lista.ID}}">
-					<button type="submit">ELIMINAR</button>
-				</form>
-			<td>
-			<td>
-				<td><a href="{{ path_for('lista.compartir', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">COMPARTIR</a></td>
-			</td>
-		</tr>
+			<div class="productos">
+				<div class="container-lista">
+					<div class="lista-nombre">
+						<h1>{{ lista.NOMBRE }}</h1>
+					</div>
+					<div class="lista-ver">
+						<a class="botonProducto" href="{{ path_for('producto.lista', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">VER</a>
+					</div>
+					<div class="lista-compartir">
+						<a class="botonProducto" href="{{ path_for('lista.compartir', {'idLista': lista.ID, 'nombreLista': lista.NOMBRE})}}">COMPARTIR</a>
+					</div>
+					<div class="lista-eliminar">
+						<form action="{{ path_for('lista.eliminar')}}"  method="post">
+							<input type="hidden" name="id" id="id" value="{{lista.ID}}">
+							<input type="submit" class="botonProducto"value="ELIMINAR">
+						</form>
+					</div>
+				</div>
+			</div>
 		{% endfor %}
-	</tbody>
-</table>
-<p><a href="{{ path_for('lista.nueva') }}">NUEVA LISTA</a></p>
-<p><a href=".">Volver</a></p>
+	<p><a class="inputLink" href="{{ path_for('lista.nueva') }}">NUEVA LISTA</a></p>
+	<p><a class="inputLink" href=".">VOLVER</a></p>
+	<ul class="w3lsg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>	
 {% endblock %}

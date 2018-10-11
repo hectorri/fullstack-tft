@@ -159,6 +159,7 @@ class ControladorProducto {
 
 			Producto::where('ID', $param['id'])->update(
 				['nombre_producto' => $param['nombre_producto'],
+				'enlace_compra' => $param['enlace_compra'],
 				'imagen' => $nombreArchivo]);
 
 			$url = $this->router->pathFor('producto.lista', 
