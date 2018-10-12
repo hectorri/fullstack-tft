@@ -113,17 +113,20 @@ class ControladorLista {
      */
     public function compartir($request, $response, $args){
 		$param = $request->getParsedBody();
-		// El mensaje
-		$mensaje = 'Hola '.$param['nombre'].' \r\nLínea 1\r\nLínea 2\r\nLínea 3';
-		// Si cualquier línea es más larga de 70 caracteres, se debería usar wordwrap()
-		$mensaje = wordwrap($mensaje, 70, "\r\n");
-		
-		// Enviarlo
-		mail($param['email'], $_SESSION['nombre'].' ha compartido una lista contigo', $mensaje);
+		$para      = $param['email'];
+		$titulo    = $_SESSION['nombre'].' ha compartido una lista contigo';
+		$mensaje   = 'Puede visitar la lista compartida en el siguiente enlace: ';
+		$cabeceras = 'From: listaRegalos@listaRegalos.com' . "\r\n" .
+			'Reply-To: '.$_SESSION['email'] . "\r\n" .
+			'X-Mailer: PHP/' . phpversion();
+
+		ini_set("SMTP","smtp.gmail.com");
+		//mail($para, $titulo, $mensaje, $cabeceras);
 
 		return $this->view->render($response, 
 					'plantilla_mensaje.twig', 
-					['mensaje' => 'Lista enviada',
+					['mensaje' => 'Nota desarrollo: El destinatario habría recibido la lista por correo electrónico, 
+						es necesario establecer los parámetros de acceso al servidor SMTP en ControladorLista.php:compartir()',
 					 'destino' => './misListas',
 					 'textoDestino' => 'Volver a mis listas']);
 	}
