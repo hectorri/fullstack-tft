@@ -43,7 +43,7 @@ class ControladorLista {
     }
 	
 	/**
-	* Verifica la correctud de un conjunto de validaciones
+	* Verifica un conjunto de validaciones
 	* @param type array $validaciones - el conjunto de validaciones a evaluar
 	* @throws \Exception cuando las validaciones no están en un arreglo
 	*/
@@ -65,11 +65,12 @@ class ControladorLista {
 	/**
     * Función para crear una lista
     * @param type Slim\Http\Request $request - solicitud http
-    * @param type Slim\Http\Response $response - respuesta http
+	* @param type Slim\Http\Response $response - respuesta http
+	* @param type array $args - argumentos para la función
     */
     public function nueva($request, $response, $args) {
 		$param = $request->getParsedBody();
-		$validaciones = $this->validaArgs($param); // hace las validaciones
+		$validaciones = $this->validaArgs($param);
 		if($this->verifica($validaciones)){
 			//crea una nueva Lista a partir del modelo
 			$lista = new Lista;
@@ -85,7 +86,8 @@ class ControladorLista {
 	/**
     * Función para eliminar una lista
     * @param type Slim\Http\Request $request - solicitud http
-    * @param type Slim\Http\Response $response - respuesta http
+	* @param type Slim\Http\Response $response - respuesta http
+	* @param type array $args - argumentos para la función
     */
     public function eliminar($request, $response, $args) {
 		$param = $request->getParsedBody();
@@ -96,9 +98,10 @@ class ControladorLista {
 	}
 
 	/**
-     * Obtiene todos los usuarios de la tabla usuarios y los manda a la vista
+     * Obtiene todas las listas de la tabla listas y los envía a la vista
 	 * @param type Slim\Http\Request $request - solicitud http
 	 * @param type Slim\Http\Response $response - respuesta http
+	 * @param type array $args - argumentos para la función
      */
     public function misListas($request, $response, $args){
 		return $this->view->render($response, 
@@ -107,9 +110,10 @@ class ControladorLista {
 	}
 
 	/**
-     * Obtiene todos los usuarios de la tabla usuarios y los manda a la vista
+     * Se encarga de realizar la notificación por correo de la lista compartida
 	 * @param type Slim\Http\Request $request - solicitud http
 	 * @param type Slim\Http\Response $response - respuesta http
+	 * @param type array $args - argumentos para la función
      */
     public function compartir($request, $response, $args){
 		$param = $request->getParsedBody();
@@ -130,5 +134,4 @@ class ControladorLista {
 					 'destino' => './misListas',
 					 'textoDestino' => 'Volver a mis listas']);
 	}
-
 }

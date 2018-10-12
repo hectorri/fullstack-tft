@@ -52,7 +52,7 @@ class ControladorUsuario {
     }
 	
 	/**
-	* Verifica la correctud de un conjunto de validaciones
+	* Verifica un conjunto de validaciones
 	* @param type array $validaciones - el conjunto de validaciones a evaluar
 	* @throws \Exception cuando las validaciones no están en un arreglo
 	*/
@@ -74,7 +74,8 @@ class ControladorUsuario {
 	/**
     * Función para crear un usuario
     * @param type Slim\Http\Request $request - solicitud http
-    * @param type Slim\Http\Response $response - respuesta http
+	* @param type Slim\Http\Response $response - respuesta http
+	* @param type array $args - argumentos para la función
     */
     public function registro($request, $response, $args) {
 		/*
@@ -89,7 +90,7 @@ class ControladorUsuario {
 			// evalua si el correo ya existe en la base de datos
             $correo_existente = Usuario::where('email', $param['email'])->get()->first();
         
-			// si el correo ya existe manda un error 403
+			// si el correo ya existe mostramos el mensaje al usuario
             if($correo_existente){
                 return $this->view->render($response, 
 					'plantilla_mensaje.twig', 
@@ -97,7 +98,6 @@ class ControladorUsuario {
 					 'destino' => './acceso',
 					 'textoDestino' => 'Iniciar sesión']);
             } else {
-            
 				//crea un nuevo usuario a partir del modelo
                 $usuario = new Usuario;
 
@@ -109,11 +109,7 @@ class ControladorUsuario {
 					'cost' => 12,
 				];
                 $usuario->contrasena = password_hash($param['contrasena'], PASSWORD_BCRYPT, $hashOpts);
-
                 $usuario->save(); //guarda el usuario
-
-                // crea una ruta para el usuario con su id
-                $path =  $request->getUri()->getPath() . '/' . $usuario->id;
 
 				return $this->view->render($response, 
 					'plantilla_mensaje.twig', 
@@ -124,10 +120,17 @@ class ControladorUsuario {
 		}
 	}
 
+	/**
+    * Función de inicio de sesión
+    * @param type Slim\Http\Request $request - solicitud http
+	* @param type Slim\Http\Response $response - respuesta http
+	* @param type array $args - argumentos para la función
+    */
 	public function login($request, $response, $args) {
 		$param = $request->getParsedBody();
+		//Buscamos el usuario a través de su email
 		$usuarioEncontrado = Usuario::where('email', $param['email'])->get()->first();
-		
+
 		if($usuarioEncontrado){
 			$contrasenaCorrecta = password_verify($param['contrasena'], $usuarioEncontrado['CONTRASENA']);
 			if($contrasenaCorrecta){
@@ -152,6 +155,12 @@ class ControladorUsuario {
 		}
 	}
 
+	/**
+    * Función de cierre de sesión
+    * @param type Slim\Http\Request $request - solicitud http
+	* @param type Slim\Http\Response $response - respuesta http
+	* @param type array $args - argumentos para la función
+    */
 	public function logout($request, $response, $args) {
 		session_destroy();
 		return $response->withRedirect('inicio', 301);

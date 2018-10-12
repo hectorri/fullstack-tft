@@ -42,7 +42,7 @@ class ControladorProducto {
     }
 	
 	/**
-	* Verifica la correctud de un conjunto de validaciones
+	* Verifica un conjunto de validaciones
 	* @param type array $validaciones - el conjunto de validaciones a evaluar
 	* @throws \Exception cuando las validaciones no están en un arreglo
 	*/
@@ -64,20 +64,23 @@ class ControladorProducto {
 	/**
     * Función para crear un producto
     * @param type Slim\Http\Request $request - solicitud http
-    * @param type Slim\Http\Response $response - respuesta http
+	* @param type Slim\Http\Response $response - respuesta http
+	* @param type array $args - argumentos para la función
     */
     public function nuevo($request, $response, $args) {
 		
 		$param = $request->getParsedBody();
-		$validaciones = $this->validaArgs($param); // hace las validaciones
+		$validaciones = $this->validaArgs($param);
 		if($this->verifica($validaciones)){
 			if((int)$_FILES['imagen']['size'] == 0){
 				$nombreArchivo = '';
 			}else{
+				//Guardamos la imagen
 				$archivo = $request->getUploadedFiles();
 				$imagen = $archivo['imagen'];
 				$nombreArchivo = $this->guardarImagen($imagen);
 			}
+
 			//crea un nuevo Producto a partir del modelo
 			$producto = new Producto;
 
@@ -93,6 +96,10 @@ class ControladorProducto {
 		}
 	}
 
+	/**
+    * Función para guardar una imagen en el servidor
+    * @param type Slim\Http\UploadedFile $imagen - imagen
+    */
 	public static function guardarImagen(UploadedFile $imagen){
 		$extension = pathinfo($imagen->getClientFilename(), PATHINFO_EXTENSION);
 		$basename = bin2hex(random_bytes(8));
@@ -104,7 +111,8 @@ class ControladorProducto {
 	/**
     * Función para eliminar una lista
     * @param type Slim\Http\Request $request - solicitud http
-    * @param type Slim\Http\Response $response - respuesta http
+	* @param type Slim\Http\Response $response - respuesta http
+	* @param type array $args - argumentos para la función
     */
     public function eliminar($request, $response, $args) {
 		$param = $request->getParsedBody();
@@ -117,6 +125,7 @@ class ControladorProducto {
      * Obtiene todos los productos de una lista
 	 * @param type Slim\Http\Request $request - solicitud http
 	 * @param type Slim\Http\Response $response - respuesta http
+	 * @param type array $args - argumentos para la función
      */
     public function listarProductos($request, $response, $args){
 		return $this->view->render($response, 
@@ -127,7 +136,7 @@ class ControladorProducto {
 	}
 
 	/**
-	 * Cambia el estado a comprado de un producto
+	 * Cambia el estado de un producto
      * @param type Slim\Http\Request $request - la solicitud http
      * @param type Slim\Http\Response $response - la respuesta http
      * @param type array $args - argumentos para la función
